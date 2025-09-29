@@ -1,0 +1,87 @@
+/* 🌆 Estilo Urbano / Moderno */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #f1f1f1;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #ff0040, 
+    0 0 20px #ff0040, 
+    0 0 40px #ff0040,
+    2px 2px 0 #000;
+  position: relative;
+}
+
+/* Animación de tipo grafiti spray */
+h1::after {
+  content: "Urban Shop";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  color: #00ffaa;
+  opacity: 0.7;
+  z-index: -1;
+  text-shadow: 0 0 15px #00ffaa;
+}
+
+/* Malla responsiva */
+.malla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+/* Tarjetas estilo urbano */
+.tarjeta {
+  background: #111;
+  border: 2px solid #222;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3),
+              0 0 30px rgba(255, 0, 64, 0.2);
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta:hover {
+  transform: scale(1.08) rotate(-1deg);
+  box-shadow: 0 0 25px rgba(0, 255, 150, 0.5),
+              0 0 50px rgba(0, 255, 150, 0.3);
+}
+
+/* Imagen dentro de la tarjeta */
+.tarjeta img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: brightness(0.95);
+  transition: all 0.3s ease;
+}
+
+.tarjeta:hover img {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Código de referencia */
+.tarjeta p {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00ffaa;
+  text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa;
+  letter-spacing: 2px;
+}
