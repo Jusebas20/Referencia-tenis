@@ -210,4 +210,11 @@ h2.categoria.cerrado + .malla {
     left: 25px;
     transform: translateY(-50%);
   }
+  .malla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+  }
 }
