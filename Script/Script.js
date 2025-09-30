@@ -211,106 +211,86 @@ const categorias = {
   ]
 };
 
-/* CONFIG */
-const SHOW_COUNT = 6; // cuántas tarjetas se ven por defecto (las demás quedan ocultas y se muestran con "Ver más")
-
-/* Genera tarjetas en el contenedor */
+// 📦 Generar tarjetas
 function generarTarjetas(idContenedor, listaImagenes, carpeta) {
-  const cont = document.getElementById(idContenedor);
-  if (!cont) return;
-  cont.innerHTML = "";
-
-  listaImagenes.forEach((img, i) => {
-    const codigo = img.replace(/\.[^.]+$/, "");
+  const contenedor = document.getElementById(idContenedor);
+  listaImagenes.forEach((img) => {
+    const codigo = img.replace(".jpg", "");
     const tarjeta = document.createElement("div");
-    tarjeta.className = "tarjeta";
-    if (i >= SHOW_COUNT) tarjeta.classList.add("oculto"); // ocultas por defecto
+    tarjeta.classList.add("tarjeta");
     tarjeta.innerHTML = `
-      <img src="img/${carpeta}/${img}" alt="${codigo}" loading="lazy">
+      <img src="img/${carpeta.toLowerCase()}/${img}" alt="${codigo}">
       <p>${codigo}</p>
     `;
-    tarjeta.style.animationDelay = `${i * 40}ms`;
-    cont.appendChild(tarjeta);
+    contenedor.appendChild(tarjeta);
   });
-
-  // Si hay más de SHOW_COUNT, añadimos botón Ver más / Ver menos
-  const existingBtn = cont.parentNode.querySelector(".ver-mas");
-  if (existingBtn) existingBtn.remove();
-
-  if (listaImagenes.length > SHOW_COUNT) {
-    const btn = document.createElement("button");
-    btn.className = "ver-mas";
-    btn.type = "button";
-    btn.textContent = "Ver más";
-    btn.dataset.open = "false";
-
-    btn.addEventListener("click", () => {
-      const ocultas = cont.querySelectorAll(".tarjeta.oculto");
-      const open = btn.dataset.open === "true";
-      ocultas.forEach(t => {
-        t.classList.toggle("oculto", open); // si open=true -> volver a ocultar
-      });
-      btn.dataset.open = (!open).toString();
-      btn.textContent = open ? "Ver más" : "Ver menos";
-    });
-
-    cont.parentNode.insertBefore(btn, cont.nextSibling);
-  }
 }
 
-/* Render inicial */
+// 🖼️ Renderizar cada sección
 generarTarjetas("nike-grid", categorias.nike, "nike");
 generarTarjetas("adidas-grid", categorias.adidas, "adidas");
 generarTarjetas("sketchers-grid", categorias.sketchers, "sketchers");
 generarTarjetas("otros-grid", categorias.otros, "otros");
 
-/* Toggle al hacer click en el título: disparará el botón "Ver más" si existe */
-document.querySelectorAll("h2.categoria").forEach(h => {
-  h.addEventListener("click", () => {
-    const cat = h.dataset.category;
-    const grid = document.getElementById(`${cat}-grid`);
-    if (!grid) return;
-    const btn = grid.parentNode.querySelector(".ver-mas");
-    // si existe, simula click del botón (evita uso de doble click; todo con single click)
-    if (btn) btn.click();
-    // icon rotation (clase css para rotar)
-    const icon = h.querySelector(".toggle-icon");
-    if (icon) icon.classList.toggle("rotated");
+// 🔽 Toggle categorías con click y doble click en el título
+document.querySelectorAll("h2.categoria").forEach((titulo) => {
+  // Un click → desplegar
+  titulo.addEventListener("click", () => {
+    if (titulo.classList.contains("cerrado")) {
+      titulo.classList.remove("cerrado");
+      const icono = titulo.querySelector(".toggle-icon");
+      if (icono) icono.classList.remove("rotado");
+    }
+  });
+
+  // Doble click → recoger
+  titulo.addEventListener("dblclick", () => {
+    if (!titulo.classList.contains("cerrado")) {
+      titulo.classList.add("cerrado");
+      const icono = titulo.querySelector(".toggle-icon");
+      if (icono) icono.classList.add("rotado");
+    }
   });
 });
 
-/* BÚSQUEDA: usar 'input' para funcionar en móviles */
-const searchBar = document.getElementById("searchBar");
-searchBar.addEventListener("input", () => {
-  const q = searchBar.value.trim().toLowerCase();
+// 🔍 Filtro de búsqueda
+document.getElementById("searchBar").addEventListener("keyup", (e) => {
+  const filtro = e.target.value.toLowerCase();
+  document.querySelectorAll(".tarjeta").forEach((tarjeta) => {
+    const codigo = tarjeta.querySelector("p").textContent.toLowerCase();
+    tarjeta.style.display = codigo.includes(filtro) ? "block" : "none";
+  });
+});
 
-  Object.keys(categorias).forEach(cat => {
-    const grid = document.getElementById(`${cat}-grid`);
-    if (!grid) return;
-    const tarjetas = Array.from(grid.querySelectorAll(".tarjeta"));
-    let anyMatch = false;
+// 🚀 Función para abrir/cerrar categoría desde el menú
+function toggleCategoria(id, action) {
+  const titulo = document.querySelector(`h2#${id}.categoria`);
+  const icono = titulo.querySelector(".toggle-icon");
+  if (!titulo) return;
 
-    tarjetas.forEach(t => {
-      const text = (t.querySelector("p")?.textContent || "").toLowerCase();
-      const matches = q === "" ? false : text.includes(q);
-      if (q === "") {
-        // restauramos estado por defecto: ocultas siguen ocultas, visibles visibles
-        if (t.classList.contains("oculto")) t.style.display = "none";
-        else t.style.display = "";
-      } else {
-        // mostrar coincidencias (incluso si estaban ocultas)
-        t.style.display = matches ? "" : "none";
-        if (matches) anyMatch = true;
-      }
-    });
+  if (action === "abrir" && titulo.classList.contains("cerrado")) {
+    titulo.classList.remove("cerrado");
+    if (icono) icono.classList.remove("rotado");
+  } else if (action === "cerrar" && !titulo.classList.contains("cerrado")) {
+    titulo.classList.add("cerrado");
+    if (icono) icono.classList.add("rotado");
+  }
+}
 
-    // si hubo resultados, aseguramos que la sección esté "abierta" visualmente
-    const heading = document.querySelector(`h2.categoria[data-category="${cat}"]`);
-    if (q !== "") {
-      if (anyMatch && heading) heading.classList.remove("cerrado");
-    } else {
-      if (heading) heading.classList.remove("cerrado"); // deja en estado normal (no fuerza expandido)
-      // ocultas vuelven a estar ocultas (se lo dejamos al loop anterior)
-    }
+// 🎯 Detectar clicks y doble clicks en el menú
+document.querySelectorAll(".navbar a").forEach(enlace => {
+  enlace.addEventListener("click", (e) => {
+    e.preventDefault();
+    const id = enlace.getAttribute("href").replace("#", "");
+    const titulo = document.querySelector(`h2#${id}.categoria`);
+    if (!titulo) return;
+
+    // Abrir/cerrar con un click
+    titulo.classList.toggle("cerrado");
+    const icono = titulo.querySelector(".toggle-icon");
+    if (icono) icono.classList.toggle("rotado");
+
+    // Hacer scroll suave
+    titulo.scrollIntoView({ behavior: "smooth" });
   });
 });
