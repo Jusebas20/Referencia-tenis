@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Urban Shop</title>
-  <!-- ✅ CSS en la carpeta css/ -->
-  <link rel="stylesheet" href="Css/style.css">
-  <!-- ✅ Responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Iconos (FontAwesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <!-- 🔝 Menú de navegación -->
   <nav class="navbar">
     <ul>
       <li><a href="#nike">Nike</a></li>
@@ -21,30 +17,36 @@
     </ul>
   </nav>
 
-  <h1>Urban Shop</h1>
+  <main class="container">
+    <h1>Urban Shop</h1>
 
-  <!-- 🔍 Barra de búsqueda con icono -->
-  <div class="search-container">
-    <i class="fa fa-search search-icon"></i>
-    <input type="text" id="searchBar" placeholder="Buscar producto por código o marca...">
-  </div>
+    <div class="search-container">
+      <i class="fa fa-search search-icon" aria-hidden="true"></i>
+      <input id="searchBar" type="search" placeholder="Buscar producto por código o marca..." />
+    </div>
 
-  <!-- 📦 Secciones con categorías -->
-  <h2 id="nike" class="categoria">Nike <i class="fa fa-chevron-down toggle-icon"></i></h2>
-  <div id="nike-grid" class="malla"></div>
+    <!-- SECCIONES (grids vacíos: el script los rellenará) -->
+    <section>
+      <h2 class="categoria" data-category="nike">Nike <i class="fa fa-chevron-down toggle-icon"></i></h2>
+      <div id="nike-grid" class="malla"></div>
+    </section>
 
-  <h2 id="adidas" class="categoria">Adidas <i class="fa fa-chevron-down toggle-icon"></i></h2>
-  <div id="adidas-grid" class="malla"></div>
+    <section>
+      <h2 class="categoria" data-category="adidas">Adidas <i class="fa fa-chevron-down toggle-icon"></i></h2>
+      <div id="adidas-grid" class="malla"></div>
+    </section>
 
-  <h2 id="sketchers" class="categoria">Sketchers <i class="fa fa-chevron-down toggle-icon"></i></h2>
-  <div id="sketchers-grid" class="malla"></div>
+    <section>
+      <h2 class="categoria" data-category="sketchers">Sketchers <i class="fa fa-chevron-down toggle-icon"></i></h2>
+      <div id="sketchers-grid" class="malla"></div>
+    </section>
 
-  <h2 id="otros" class="categoria">Otros <i class="fa fa-chevron-down toggle-icon"></i></h2>
-  <div id="otros-grid" class="malla"></div>
+    <section>
+      <h2 class="categoria" data-category="otros">Otros <i class="fa fa-chevron-down toggle-icon"></i></h2>
+      <div id="otros-grid" class="malla"></div>
+    </section>
+  </main>
 
-  <!-- ✅ Script principal -->
-  <script src="Script/Script.js">
-
-  </script>
+  <script src="script/script.js"></script>
 </body>
 </html>
