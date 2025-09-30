@@ -1,213 +1,111 @@
 /* 🌆 Estilo Urbano / Moderno */
+:root {
+  --bg1: #0f0f0f;
+  --bg2: #111;
+  --accent: #ff0040;
+  --neon: #00ffaa;
+}
+* { box-sizing: border-box; }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  background: linear-gradient(135deg, var(--bg1), #1a1a1a);
   color: #f1f1f1;
   margin: 0;
   padding: 20px;
 }
+.container { max-width: 1200px; margin: 0 auto; }
 
-/* 🔝 Barra de navegación */
+/* NAV */
 .navbar {
-  background: #111;
-  padding: 15px;
+  background: var(--bg2);
+  padding: 12px 16px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(255,0,64,0.5);
+  box-shadow: 0 0 10px rgba(255,0,64,0.15);
+  border-radius: 8px;
 }
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap; /* ✅ Responsive */
-}
-.navbar ul li a {
-  text-decoration: none;
-  color: #00ffaa;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: color 0.3s;
-}
-.navbar ul li a:hover {
-  color: #ff0040;
-  text-shadow: 0 0 8px #ff0040;
-}
+.navbar ul { list-style: none; margin: 0; padding: 0; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+.navbar a { color: var(--neon); text-decoration: none; font-weight:700; text-transform:uppercase; }
 
-/* Título principal */
-h1 {
-  margin: 40px 0 30px;
-  font-size: 3rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-family: 'Impact', 'Arial Black', sans-serif;
-  color: #fff;
-  text-shadow: 
-    0 0 10px #ff0040, 
-    0 0 20px #ff0040, 
-    0 0 40px #ff0040,
-    2px 2px 0 #000;
-  position: relative;
-}
-h1::after {
-  content: "Urban Shop";
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  color: #00ffaa;
-  opacity: 0.7;
-  z-index: -1;
-  text-shadow: 0 0 15px #00ffaa;
-}
+/* Title */
+h1 { font-size: 2.4rem; margin: 18px 0 6px; letter-spacing:3px; color:#fff; text-shadow:0 0 8px var(--accent); }
 
-/* 🔍 Barra de búsqueda */
-.search-container {
-  text-align: center;
-  margin: 25px 0;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-.search-container i {
-  position: absolute;
-  left: calc(50% - 210px);
-  top: 50%;
-  transform: translateY(-50%);
-  color: #00ffaa;
-  font-size: 1.2rem;
-  pointer-events: none;
-}
+/* Search */
+.search-container { text-align: center; margin: 16px 0 24px; position:relative; }
+.search-container .search-icon { position:absolute; left:calc(50% - 210px); top:50%; transform:translateY(-50%); color:var(--neon); }
 #searchBar {
-  width: 80%;
-  max-width: 450px;
-  padding: 12px 20px 12px 40px; /* espacio para lupa */
-  border-radius: 30px;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background: #1c1c1c;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(0, 255, 150, 0.4),
-              inset 0 0 5px rgba(255, 0, 64, 0.5);
-  transition: all 0.3s ease;
-}
-#searchBar::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
-#searchBar:focus {
-  background: #222;
-  box-shadow: 0 0 15px rgba(255,0,64,0.6),
-              0 0 25px rgba(0,255,150,0.5);
-  transform: scale(1.02);
+  width:80%; max-width:450px;
+  padding:12px 20px 12px 44px;
+  border-radius:30px;
+  border:none; outline:none; background:#1c1c1c; color:#fff;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
 }
 
-/* Títulos de categorías con flecha */
+/* Titles de categoria */
 h2.categoria {
-  margin-top: 40px;
-  margin-bottom: 15px;
-  font-size: 2rem;
-  color: #ff0040;
-  text-shadow: 0 0 8px #ff0040;
-  border-bottom: 2px solid #ff0040;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: var(--accent);
+  display:flex; align-items:center; gap:10px; cursor:pointer;
+  border-bottom:2px solid rgba(255,0,64,0.08); padding-bottom:6px;
 }
-.toggle-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  color: #00ffaa;
-}
+.toggle-icon { color: var(--neon); transition: transform .25s ease; }
+.toggle-icon.rotated { transform: rotate(180deg); }
 
-/* Ocultar mallas cuando están cerradas */
-h2.categoria.cerrado + .malla {
-  display: none;
-}
+/* Ocultar malla si quieres: (en este caso no cerramos toda la malla, solo ocultamos tarjetas > SHOW_COUNT) */
+h2.categoria.cerrado + .malla { }
 
-/* Malla responsiva */
+/* Grid (malla) */
 .malla {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  padding: 10px;
-  animation: fadeIn 0.5s ease forwards;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap:18px;
+  padding:8px 0 16px;
 }
 
-/* Tarjetas estilo urbano */
+/* Tarjeta */
 .tarjeta {
-  background: #111;
-  border: 2px solid #222;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3),
-              0 0 30px rgba(255, 0, 64, 0.2);
-  transition: all 0.3s ease;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: cardFade 0.6s forwards;
+  background:#0e0e0e;
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+  border:1px solid #222;
+  box-shadow: 0 6px 20px rgba(255,0,64,0.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+  overflow:hidden;
+  opacity:1;
+  transform: translateY(0);
 }
-.tarjeta:hover {
-  transform: scale(1.08) rotate(-1deg);
-  box-shadow: 0 0 25px rgba(0, 255, 150, 0.5),
-              0 0 50px rgba(0, 255, 150, 0.3);
-}
+.tarjeta img { width:100%; height:110px; object-fit:contain; border-radius:8px; display:block; margin-bottom:10px; }
+.tarjeta p { margin:0; font-weight:800; color:var(--neon); text-shadow:0 0 6px rgba(0,255,170,0.2); letter-spacing:2px; }
 
-/* Animación de tarjetas */
-@keyframes cardFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Hover */
+.tarjeta:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
 
-/* Imagen dentro de la tarjeta */
-.tarjeta img {
-  width: 100%;
-  max-height: 180px;
-  object-fit: contain;
-  border-radius: 10px;
-  filter: brightness(0.95);
-  transition: all 0.3s ease;
-}
-.tarjeta:hover img {
-  filter: brightness(1.2) contrast(1.1);
-}
+/* Clase que oculta tarjetas por defecto (las laterales > SHOW_COUNT) */
+.tarjeta.oculto { display: none; }
 
-/* Código de referencia */
-.tarjeta p {
-  margin-top: 12px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #00ffaa;
-  text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa;
-  letter-spacing: 2px;
+/* Botón ver-mas */
+.ver-mas {
+  display:block;
+  margin: 8px auto 28px;
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid rgba(0,255,170,0.15);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight:700;
+  transition: background .2s ease, transform .15s ease;
 }
+.ver-mas:hover { transform: translateY(-3px); background: rgba(0,255,170,0.02); }
 
-/* 📱 Responsive ajustes */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-  .navbar ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  #searchBar {
-    width: 95%;
-    font-size: 0.95rem;
-    padding-left: 35px;
-  }
-  .search-container i {
-    left: 25px;
-    transform: translateY(-50%);
-  }
+/* Responsive */
+@media (max-width:768px) {
+  #searchBar { width:95%; padding-left:40px; }
+  .search-container .search-icon { left:16px; }
+  h1 { font-size:1.6rem; }
+  .malla { gap:12px; }
 }
