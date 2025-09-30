@@ -1,6 +1,6 @@
 // 🏷️ Listas de imágenes por categoría
 const categorias = {
-  NIKE: [
+  nike: [
     "ZPNIKE-001.jpg",
     "ZPNIKE-002.jpg",
     "ZPNIKE-003.jpg",
@@ -75,7 +75,7 @@ const categorias = {
     "ZPNIKE-072.jpg",
     "ZPNIKE-073.jpg"
   ],
-  ADIDAS: [
+  adidas: [
     "ZPADIDAS-001.jpg",
     "ZPADIDAS-002.jpg",
     "ZPADIDAS-003.jpg",
@@ -130,7 +130,7 @@ const categorias = {
     "ZPADIDAS-052.jpg",
     
   ],
-  SKETCHERS: [
+  sketchers: [
     "ZPSKET-001.jpg",
     "ZPSKET-002.jpg",
     "ZPSKET-003.jpg",
@@ -156,7 +156,7 @@ const categorias = {
     "ZPSKET-023.jpg",
 
   ],
-  OTROS: [
+  otros: [
     "ZPOTRO-001.jpg",
     "ZPOTRO-002.jpg",
     "ZPOTRO-003.jpg",
@@ -227,10 +227,10 @@ function generarTarjetas(idContenedor, listaImagenes, carpeta) {
 }
 
 // 🖼️ Renderizar cada sección
-generarTarjetas("nike-grid", categorias.NIKE, "NIKE");
-generarTarjetas("adidas-grid", categorias.ADIDAS, "ADIDAS");
-generarTarjetas("sketchers-grid", categorias.SKETCHERS, "SKETCHERS");
-generarTarjetas("otros-grid", categorias.OTROS, "OTROS");
+generarTarjetas("nike-grid", categorias.nike, "nike");
+generarTarjetas("adidas-grid", categorias.adidas, "adidas");
+generarTarjetas("sketchers-grid", categorias.sketchers, "sketchers");
+generarTarjetas("otros-grid", categorias.otros, "otros");
 
 // 🔽 Toggle categorías con click y doble click en el título
 document.querySelectorAll("h2.categoria").forEach((titulo) => {
