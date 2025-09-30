@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Urban Shop</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ✅ CSS en la carpeta css/ -->
+  <link rel="stylesheet" href="Css/style.css">
+  <!-- ✅ Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- FontAwesome -->
+  <!-- Iconos (FontAwesome) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -21,25 +23,28 @@
 
   <h1>Urban Shop</h1>
 
-  <!-- 🔍 Barra de búsqueda -->
+  <!-- 🔍 Barra de búsqueda con icono -->
   <div class="search-container">
     <i class="fa fa-search search-icon"></i>
     <input type="text" id="searchBar" placeholder="Buscar producto por código o marca...">
   </div>
 
-  <!-- 📦 Categorías -->
-  <h2 class="categoria" data-target="nike-grid">Nike <i class="fa fa-chevron-down toggle-icon"></i></h2>
+  <!-- 📦 Secciones con categorías -->
+  <h2 id="nike" class="categoria">Nike <i class="fa fa-chevron-down toggle-icon"></i></h2>
   <div id="nike-grid" class="malla"></div>
 
-  <h2 class="categoria" data-target="adidas-grid">Adidas <i class="fa fa-chevron-down toggle-icon"></i></h2>
+  <h2 id="adidas" class="categoria">Adidas <i class="fa fa-chevron-down toggle-icon"></i></h2>
   <div id="adidas-grid" class="malla"></div>
 
-  <h2 class="categoria" data-target="sketchers-grid">Sketchers <i class="fa fa-chevron-down toggle-icon"></i></h2>
+  <h2 id="sketchers" class="categoria">Sketchers <i class="fa fa-chevron-down toggle-icon"></i></h2>
   <div id="sketchers-grid" class="malla"></div>
 
-  <h2 class="categoria" data-target="otros-grid">Otros <i class="fa fa-chevron-down toggle-icon"></i></h2>
+  <h2 id="otros" class="categoria">Otros <i class="fa fa-chevron-down toggle-icon"></i></h2>
   <div id="otros-grid" class="malla"></div>
 
-  <script src="script/script.js"></script>
+  <!-- ✅ Script principal -->
+  <script src="Script/Script.js">
+
+  </script>
 </body>
 </html>
