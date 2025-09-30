@@ -226,71 +226,49 @@ function generarTarjetas(idContenedor, listaImagenes, carpeta) {
   });
 }
 
-// 🖼️ Renderizar cada sección
+// 📦 Generar tarjetas
+function generarTarjetas(idContenedor, listaImagenes, carpeta) {
+  const contenedor = document.getElementById(idContenedor);
+  contenedor.innerHTML = "";
+
+  listaImagenes.forEach(img => {
+    const codigo = img.replace(".jpg", "");
+    const tarjeta = document.createElement("div");
+    tarjeta.classList.add("tarjeta");
+
+    tarjeta.innerHTML = `
+      <img src="img/${carpeta}/${img}" alt="${codigo}">
+      <p>${codigo}</p>
+    `;
+    contenedor.appendChild(tarjeta);
+  });
+}
+
+// 🖼️ Renderizamos
 generarTarjetas("nike-grid", categorias.nike, "nike");
 generarTarjetas("adidas-grid", categorias.adidas, "adidas");
 generarTarjetas("sketchers-grid", categorias.sketchers, "sketchers");
 generarTarjetas("otros-grid", categorias.otros, "otros");
 
-// 🔽 Toggle categorías con click y doble click en el título
-document.querySelectorAll("h2.categoria").forEach((titulo) => {
-  // Un click → desplegar
+// 🔽 Toggle de categorías
+document.querySelectorAll(".categoria").forEach(titulo => {
   titulo.addEventListener("click", () => {
-    if (titulo.classList.contains("cerrado")) {
-      titulo.classList.remove("cerrado");
-      const icono = titulo.querySelector(".toggle-icon");
-      if (icono) icono.classList.remove("rotado");
-    }
-  });
-
-  // Doble click → recoger
-  titulo.addEventListener("dblclick", () => {
-    if (!titulo.classList.contains("cerrado")) {
-      titulo.classList.add("cerrado");
-      const icono = titulo.querySelector(".toggle-icon");
-      if (icono) icono.classList.add("rotado");
-    }
-  });
-});
-
-// 🔍 Filtro de búsqueda
-document.getElementById("searchBar").addEventListener("keyup", (e) => {
-  const filtro = e.target.value.toLowerCase();
-  document.querySelectorAll(".tarjeta").forEach((tarjeta) => {
-    const codigo = tarjeta.querySelector("p").textContent.toLowerCase();
-    tarjeta.style.display = codigo.includes(filtro) ? "block" : "none";
-  });
-});
-
-// 🚀 Función para abrir/cerrar categoría desde el menú
-function toggleCategoria(id, action) {
-  const titulo = document.querySelector(`h2#${id}.categoria`);
-  const icono = titulo.querySelector(".toggle-icon");
-  if (!titulo) return;
-
-  if (action === "abrir" && titulo.classList.contains("cerrado")) {
-    titulo.classList.remove("cerrado");
-    if (icono) icono.classList.remove("rotado");
-  } else if (action === "cerrar" && !titulo.classList.contains("cerrado")) {
-    titulo.classList.add("cerrado");
-    if (icono) icono.classList.add("rotado");
-  }
-}
-
-// 🎯 Detectar clicks y doble clicks en el menú
-document.querySelectorAll(".navbar a").forEach(enlace => {
-  enlace.addEventListener("click", (e) => {
-    e.preventDefault();
-    const id = enlace.getAttribute("href").replace("#", "");
-    const titulo = document.querySelector(`h2#${id}.categoria`);
-    if (!titulo) return;
-
-    // Abrir/cerrar con un click
-    titulo.classList.toggle("cerrado");
+    const targetId = titulo.getAttribute("data-target");
+    const grid = document.getElementById(targetId);
     const icono = titulo.querySelector(".toggle-icon");
-    if (icono) icono.classList.toggle("rotado");
 
-    // Hacer scroll suave
-    titulo.scrollIntoView({ behavior: "smooth" });
+    grid.style.display = grid.style.display === "none" ? "grid" : "none";
+    icono.classList.toggle("fa-chevron-down");
+    icono.classList.toggle("fa-chevron-up");
+  });
+});
+
+// 🔍 Búsqueda
+const searchBar = document.getElementById("searchBar");
+searchBar.addEventListener("input", e => {
+  const termino = e.target.value.toLowerCase();
+  document.querySelectorAll(".tarjeta").forEach(card => {
+    const codigo = card.querySelector("p").textContent.toLowerCase();
+    card.style.display = codigo.includes(termino) ? "block" : "none";
   });
 });
