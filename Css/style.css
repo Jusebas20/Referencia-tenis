@@ -7,8 +7,39 @@ body {
   padding: 20px;
 }
 
+/* 🔝 Barra de navegación */
+.navbar {
+  background: #111;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(255,0,64,0.5);
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* ✅ Responsive */
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: #00ffaa;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.navbar ul li a:hover {
+  color: #ff0040;
+  text-shadow: 0 0 8px #ff0040;
+}
+
+/* Título principal */
 h1 {
-  margin-bottom: 30px;
+  margin: 40px 0 30px;
   font-size: 3rem;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -21,8 +52,6 @@ h1 {
     2px 2px 0 #000;
   position: relative;
 }
-
-/* Animación de tipo grafiti spray */
 h1::after {
   content: "Urban Shop";
   position: absolute;
@@ -34,12 +63,79 @@ h1::after {
   text-shadow: 0 0 15px #00ffaa;
 }
 
+/* 🔍 Barra de búsqueda */
+.search-container {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.search-container i {
+  position: absolute;
+  left: calc(50% - 210px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00ffaa;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+#searchBar {
+  width: 80%;
+  max-width: 450px;
+  padding: 12px 20px 12px 40px; /* espacio para lupa */
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: #1c1c1c;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 255, 150, 0.4),
+              inset 0 0 5px rgba(255, 0, 64, 0.5);
+  transition: all 0.3s ease;
+}
+#searchBar::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+#searchBar:focus {
+  background: #222;
+  box-shadow: 0 0 15px rgba(255,0,64,0.6),
+              0 0 25px rgba(0,255,150,0.5);
+  transform: scale(1.02);
+}
+
+/* Títulos de categorías con flecha */
+h2.categoria {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 2rem;
+  color: #ff0040;
+  text-shadow: 0 0 8px #ff0040;
+  border-bottom: 2px solid #ff0040;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: #00ffaa;
+}
+
+/* Ocultar mallas cuando están cerradas */
+h2.categoria.cerrado + .malla {
+  display: none;
+}
+
 /* Malla responsiva */
 .malla {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 25px;
   padding: 10px;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 /* Tarjetas estilo urbano */
@@ -54,12 +150,22 @@ h1::after {
   text-align: center;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFade 0.6s forwards;
 }
-
 .tarjeta:hover {
   transform: scale(1.08) rotate(-1deg);
   box-shadow: 0 0 25px rgba(0, 255, 150, 0.5),
               0 0 50px rgba(0, 255, 150, 0.3);
+}
+
+/* Animación de tarjetas */
+@keyframes cardFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Imagen dentro de la tarjeta */
@@ -71,7 +177,6 @@ h1::after {
   filter: brightness(0.95);
   transition: all 0.3s ease;
 }
-
 .tarjeta:hover img {
   filter: brightness(1.2) contrast(1.1);
 }
@@ -84,4 +189,25 @@ h1::after {
   color: #00ffaa;
   text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa;
   letter-spacing: 2px;
+}
+
+/* 📱 Responsive ajustes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  #searchBar {
+    width: 95%;
+    font-size: 0.95rem;
+    padding-left: 35px;
+  }
+  .search-container i {
+    left: 25px;
+    transform: translateY(-50%);
+  }
 }
