@@ -208,3 +208,213 @@ h2.categoria.cerrado + .malla {
     transform: translateY(-50%);
   }
 }
+/* 🌆 Estilo Urbano / Moderno Blanco y Dorado */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #f8f8f8;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 🔝 Barra de navegación */
+.navbar {
+  background: #111;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 15px rgba(218,165,32,0.6);
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* ✅ Responsive */
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.navbar ul li a:hover {
+  color: #d4af37;
+  text-shadow: 0 0 10px #d4af37, 0 0 20px rgba(212,175,55,0.6);
+}
+
+/* Título principal */
+h1 {
+  margin: 40px 0 30px;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #d4af37, 
+    0 0 30px rgba(212,175,55,0.6),
+    2px 2px 0 #000;
+  position: relative;
+}
+h1::after {
+  content: "Urban Shop";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  color: #bfa76a;
+  opacity: 0.6;
+  z-index: -1;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+/* 🔍 Barra de búsqueda */
+.search-container {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.search-container i {
+  position: absolute;
+  left: calc(50% - 210px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4af37;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+#searchBar {
+  width: 80%;
+  max-width: 450px;
+  padding: 12px 20px 12px 40px;
+  border-radius: 30px;
+  border: 1px solid #d4af37;
+  outline: none;
+  font-size: 1rem;
+  background: #1c1c1c;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(212,175,55,0.3);
+  transition: all 0.3s ease;
+}
+#searchBar::placeholder {
+  color: #b8b8b8;
+  font-style: italic;
+}
+#searchBar:focus {
+  background: #222;
+  box-shadow: 0 0 20px rgba(212,175,55,0.6),
+              0 0 30px rgba(255,255,255,0.2);
+  transform: scale(1.02);
+}
+
+/* Títulos de categorías con flecha */
+h2.categoria {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 2rem;
+  color: #d4af37;
+  text-shadow: 0 0 8px rgba(212,175,55,0.6);
+  border-bottom: 2px solid #d4af37;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+
+/* Ocultar mallas cuando están cerradas */
+h2.categoria.cerrado + .malla {
+  display: none;
+}
+
+/* Malla responsiva */
+.malla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  padding: 10px;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Tarjetas estilo blanco/dorado */
+.tarjeta {
+  background: #111;
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.2);
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFade 0.6s forwards;
+}
+.tarjeta:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255,215,0,0.6),
+              0 0 40px rgba(255,255,255,0.3);
+}
+
+/* Animación de tarjetas */
+@keyframes cardFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Imagen dentro de la tarjeta */
+.tarjeta img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: brightness(0.95);
+  transition: all 0.3s ease;
+}
+.tarjeta:hover img {
+  filter: brightness(1.15) contrast(1.1);
+}
+
+/* Código de referencia */
+.tarjeta p {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d4af37;
+  text-shadow: 0 0 5px rgba(212,175,55,0.7), 0 0 10px rgba(212,175,55,0.3);
+  letter-spacing: 2px;
+}
+
+/* 📱 Responsive ajustes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  #searchBar {
+    width: 95%;
+    font-size: 0.95rem;
+    padding-left: 35px;
+  }
+  .search-container i {
+    left: 25px;
+    transform: translateY(-50%);
+  }
+}
