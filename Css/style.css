@@ -1,8 +1,8 @@
-/* 🌆 Estilo Urbano / Moderno */
+/* 🌆 Estilo Urbano / Moderno Blanco y Dorado */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-  color: #f1f1f1;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #f8f8f8;
   margin: 0;
   padding: 20px;
 }
@@ -14,7 +14,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(255,0,64,0.5);
+  box-shadow: 0 0 15px rgba(218,165,32,0.6);
 }
 .navbar ul {
   list-style: none;
@@ -27,14 +27,14 @@ body {
 }
 .navbar ul li a {
   text-decoration: none;
-  color: #00ffaa;
+  color: #fff;
   font-weight: bold;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 .navbar ul li a:hover {
-  color: #ff0040;
-  text-shadow: 0 0 8px #ff0040;
+  color: #d4af37;
+  text-shadow: 0 0 10px #d4af37, 0 0 20px rgba(212,175,55,0.6);
 }
 
 /* Título principal */
@@ -46,9 +46,8 @@ h1 {
   font-family: 'Impact', 'Arial Black', sans-serif;
   color: #fff;
   text-shadow: 
-    0 0 10px #ff0040, 
-    0 0 20px #ff0040, 
-    0 0 40px #ff0040,
+    0 0 10px #d4af37, 
+    0 0 30px rgba(212,175,55,0.6),
     2px 2px 0 #000;
   position: relative;
 }
@@ -57,10 +56,10 @@ h1::after {
   position: absolute;
   left: 5px;
   top: 5px;
-  color: #00ffaa;
-  opacity: 0.7;
+  color: #bfa76a;
+  opacity: 0.6;
   z-index: -1;
-  text-shadow: 0 0 15px #00ffaa;
+  text-shadow: 0 0 10px #d4af37;
 }
 
 /* 🔍 Barra de búsqueda */
@@ -76,32 +75,31 @@ h1::after {
   left: calc(50% - 210px);
   top: 50%;
   transform: translateY(-50%);
-  color: #00ffaa;
+  color: #d4af37;
   font-size: 1.2rem;
   pointer-events: none;
 }
 #searchBar {
   width: 80%;
   max-width: 450px;
-  padding: 12px 20px 12px 40px; /* espacio para lupa */
+  padding: 12px 20px 12px 40px;
   border-radius: 30px;
-  border: none;
+  border: 1px solid #d4af37;
   outline: none;
   font-size: 1rem;
   background: #1c1c1c;
   color: #fff;
-  box-shadow: 0 0 10px rgba(0, 255, 150, 0.4),
-              inset 0 0 5px rgba(255, 0, 64, 0.5);
+  box-shadow: 0 0 10px rgba(212,175,55,0.3);
   transition: all 0.3s ease;
 }
 #searchBar::placeholder {
-  color: #aaa;
+  color: #b8b8b8;
   font-style: italic;
 }
 #searchBar:focus {
   background: #222;
-  box-shadow: 0 0 15px rgba(255,0,64,0.6),
-              0 0 25px rgba(0,255,150,0.5);
+  box-shadow: 0 0 20px rgba(212,175,55,0.6),
+              0 0 30px rgba(255,255,255,0.2);
   transform: scale(1.02);
 }
 
@@ -110,9 +108,9 @@ h2.categoria {
   margin-top: 40px;
   margin-bottom: 15px;
   font-size: 2rem;
-  color: #ff0040;
-  text-shadow: 0 0 8px #ff0040;
-  border-bottom: 2px solid #ff0040;
+  color: #d4af37;
+  text-shadow: 0 0 8px rgba(212,175,55,0.6);
+  border-bottom: 2px solid #d4af37;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -121,7 +119,7 @@ h2.categoria {
 .toggle-icon {
   font-size: 1.2rem;
   transition: transform 0.3s ease;
-  color: #00ffaa;
+  color: #fff;
 }
 
 /* Ocultar mallas cuando están cerradas */
@@ -138,14 +136,13 @@ h2.categoria.cerrado + .malla {
   animation: fadeIn 0.5s ease forwards;
 }
 
-/* Tarjetas estilo urbano */
+/* Tarjetas estilo blanco/dorado */
 .tarjeta {
   background: #111;
-  border: 2px solid #222;
+  border: 1px solid rgba(212,175,55,0.4);
   border-radius: 15px;
   padding: 15px;
-  box-shadow: 0 0 15px rgba(255, 0, 64, 0.3),
-              0 0 30px rgba(255, 0, 64, 0.2);
+  box-shadow: 0 0 15px rgba(212,175,55,0.2);
   transition: all 0.3s ease;
   text-align: center;
   position: relative;
@@ -155,9 +152,9 @@ h2.categoria.cerrado + .malla {
   animation: cardFade 0.6s forwards;
 }
 .tarjeta:hover {
-  transform: scale(1.08) rotate(-1deg);
-  box-shadow: 0 0 25px rgba(0, 255, 150, 0.5),
-              0 0 50px rgba(0, 255, 150, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255,215,0,0.6),
+              0 0 40px rgba(255,255,255,0.3);
 }
 
 /* Animación de tarjetas */
@@ -178,7 +175,7 @@ h2.categoria.cerrado + .malla {
   transition: all 0.3s ease;
 }
 .tarjeta:hover img {
-  filter: brightness(1.2) contrast(1.1);
+  filter: brightness(1.15) contrast(1.1);
 }
 
 /* Código de referencia */
@@ -186,8 +183,8 @@ h2.categoria.cerrado + .malla {
   margin-top: 12px;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #00ffaa;
-  text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa;
+  color: #d4af37;
+  text-shadow: 0 0 5px rgba(212,175,55,0.7), 0 0 10px rgba(212,175,55,0.3);
   letter-spacing: 2px;
 }
 
